@@ -8,14 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var vm = ContentViewModel()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            
+            List {
+                ForEach(vm.toDoList) { todo in
+                    Text(todo.title) 
+                }
+            }
+            
+            Button {
+                print(vm.toDoList)
+                vm.loadData()
+                print(vm.toDoList)
+            } label: {
+                Text("Load Data")
+            }
         }
         .padding()
+      
     }
 }
 
