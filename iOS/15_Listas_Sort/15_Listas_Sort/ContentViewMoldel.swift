@@ -19,13 +19,21 @@ class ContentViewMoldel:ObservableObject{
        Aluno(nome: "Beatriz", idade: 20),
        Aluno(nome: "Lucas", idade: 18),
        Aluno(nome: "Sofia", idade: 24),
-       Aluno(nome: "Gabriel", idade: 22),
-       Aluno(nome: "Isabela", idade: 19)
+       Aluno(nome: "Gabriel", idade: -1),
+       Aluno(nome: "Isabela", idade: -1)
    ]
    
     
     @Published var novoNome:String = ""
     @Published var novaIdade:String = ""
+    @Published var onlyInvalid = false{
+        didSet{
+            lista.filter { al in
+                al.idade == -1
+            }
+        }
+
+    }
     
     func addAluno(){
         

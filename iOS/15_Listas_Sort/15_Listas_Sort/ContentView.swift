@@ -19,13 +19,15 @@ struct ContentView: View {
                     btn1View(btnText: "Sort Nome")
                 }
                 
-                
-                
                 Button {
                     vm.listaOrdenadaIdade()
                 } label: {
                     btn1View(btnText: "Sort Idade")
                 }
+                //TODO: completar o código de forma a que quando o Toggle apenas mostrar os registos invaldos (idade == -1)
+                
+                Toggle("", isOn: $vm.onlyInvalid)
+                
             }
           
             List{
