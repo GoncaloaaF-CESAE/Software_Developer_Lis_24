@@ -1,23 +1,12 @@
 //
-//  ToDo.swift
-//  16_LoadAPI_Lista
+//  toDo.swift
+//  17_save_data_API
 //
-//  Created by Gonçalo Feliciano on 09/01/2025.
+//  Created by Gonçalo Feliciano on 13/01/2025.
 //
-
 import Foundation
 import SwiftUICore
 
-
-/*
- {
-    "userId": 1,
-    "id": 1,
-    "title": "delectus aut autem",
-    "completed": false
-  }
- 
- */
 
 typealias ToDos = [ToDo]
 
@@ -37,6 +26,3 @@ struct ToDo: Codable, Identifiable{
         
     }
 }
-
-
-// ToDos == [Todo]

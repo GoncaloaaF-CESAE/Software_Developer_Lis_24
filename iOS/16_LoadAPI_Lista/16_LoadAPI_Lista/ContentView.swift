@@ -12,23 +12,33 @@ struct ContentView: View {
     @ObservedObject var vm = ContentViewModel()
     
     var body: some View {
-        VStack {
+        NavigationStack {
             
-            List {
-                ForEach(vm.toDoList) { todo in
-                    Text(todo.title) 
+            
+            VStack {
+                
+                List {
+                    ForEach(vm.toDoList) { todo in
+                        NavigationLink {
+                            ToDoView(toDo: todo)
+                        } label: {
+                            ListItemView(toDo: todo)
+                        }
+
+                       
+                    }
+                }
+                
+                Button {
+                    print(vm.toDoList)
+                    vm.loadData()
+                    print(vm.toDoList)
+                } label: {
+                    Text("Load Data")
                 }
             }
-            
-            Button {
-                print(vm.toDoList)
-                vm.loadData()
-                print(vm.toDoList)
-            } label: {
-                Text("Load Data")
-            }
+            .padding()
         }
-        .padding()
       
     }
 }
