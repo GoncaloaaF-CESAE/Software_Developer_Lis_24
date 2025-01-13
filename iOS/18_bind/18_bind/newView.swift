@@ -9,7 +9,7 @@ import SwiftUI
 
 struct newView: View {
     
-    @State var msg:String
+    @Binding var msg:String
     
     var body: some View {
         VStack{
@@ -22,6 +22,9 @@ struct newView: View {
     }
 }
 
+
 #Preview {
-    newView(msg: "Bla")
+    newView(msg: .constant("bla"))
 }
+
+

@@ -14,20 +14,13 @@ struct AddView: View {
     var body: some View {
         VStack{
             
-            TextField("id", text: $vm.tf_id)
-                .frame(width: 250)
-                .textFieldStyle(.roundedBorder)
-                .keyboardType(.numberPad)
             
-            TextField("User Id", text: $vm.tf_userId)
-                .frame(width: 250)
-                .textFieldStyle(.roundedBorder)
-                .keyboardType(.numberPad)
+            MyTextField(placeHolder: "id", text: $vm.tf_id)
+           
+            MyTextField(placeHolder:"User Id", text: $vm.tf_userId)
             
-            TextField("Task", text: $vm.tf_msg)
-                .frame(width: 250)
-                .textFieldStyle(.roundedBorder)
-                .keyboardType(.numberPad)
+            MyTextField(placeHolder: "Task", text: $vm.tf_msg)
+
             
             Toggle(isOn: $vm.tg_comp) {
                 Text("Done")

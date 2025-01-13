@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct MyTextField: View {
+    var placeHolder: String
+    @Binding var text:String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TextField(placeHolder, text: $text)
+            .frame(width: 290)
+            .textFieldStyle(.roundedBorder)
+            .keyboardType(.numberPad)
     }
 }
 
 #Preview {
-    MyTextField()
+    MyTextField(placeHolder: "Foo", text: .constant("msg"))
 }
