@@ -28,6 +28,7 @@ struct ContentView: View {
                        
                     }
                 }
+              
                 
                 Button {
                     print(vm.toDoList)
