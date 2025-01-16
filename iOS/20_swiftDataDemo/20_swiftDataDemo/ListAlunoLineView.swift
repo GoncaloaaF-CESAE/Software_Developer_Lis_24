@@ -10,13 +10,20 @@ import SwiftUI
 struct ListAlunoLineView: View {
     var aluno: Aluno
     var body: some View {
-        VStack(alignment: .leading){
-            Text(aluno.nome)
-                .font(.title)
-                .fontWeight(.bold)
-            Text("\(aluno.nif)")
-                .font(.caption)
+        HStack{
+            VStack(alignment: .leading){
+                Text(aluno.nome)
+                    .font(.title)
+                    .fontWeight(.bold)
+                Text("\(aluno.nif)")
+                    .font(.caption)
+            }
+           
+            Spacer()
+            
         }
+        .frame(maxWidth: .infinity)
+        .contentShape(Rectangle())
     }
 }
 

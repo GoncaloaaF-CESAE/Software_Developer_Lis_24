@@ -11,10 +11,16 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) var ctx
     
-    @Query var alunos:[Aluno]
+    @Query(
+        //filter: #Predicate<Aluno>{ $0.nif > 3  },
+           sort: \Aluno.nome
+    )
+    var alunos:[Aluno]
     
     @State var nome: String = ""
     @State var nif:String = ""
+    
+    @State var selecAluno:Aluno?
     
     var body: some View {
     
@@ -23,8 +29,26 @@ struct ContentView: View {
                 List{
                     
                     ForEach(alunos){aluno in
+                    
+                        
                         ListAlunoLineView(aluno: aluno)
+                            .background(selecAluno == aluno ? Color.gray : Color.clear)
+                            .onTapGesture {
+                                print("tap no aluno com o nfi: \(aluno.nif)")
+                            }
+                            .onLongPressGesture(minimumDuration: 1.5 ) {
+                                selecAluno = aluno
+                               //aluno.nome = "Nome Long Press"
+                            }
+                        
                     }
+                    .onDelete { indexSet in
+                        for i in indexSet{
+                            ctx.delete(alunos[i])
+                        }
+                    }
+                    
+                    
                 }//List
                 .overlay {
                     if alunos.isEmpty{
@@ -32,6 +56,18 @@ struct ContentView: View {
                         
                     }
                 }
+                
+                Button {
+                    
+                    selecAluno!.nome = "Novo Nome"
+                    
+                    selecAluno = nil
+                    
+                    
+                } label: {
+                    Text("Update Data")
+                }
+
                 
                 VStack{
                     
@@ -67,7 +103,7 @@ struct ContentView: View {
                 
                 
             }// main VStack
-            .navigationTitle("Lista de Alunos")
+            .navigationTitle("Lista de Aluno")
             
         }// NavigationStack
     }
